@@ -27,13 +27,16 @@ jobs:
       - name: Generate Dependency Tree
         run: mvn -q dependency:tree -DoutputFile=target/dependency-tree.txt -Daggregate=true
 
+      - name: Generate All classes
+        run: mvn -q compile
+
       - name: Test if all elements are well placed
         id: test-well-placed-elements
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test if all elements are well placed
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=TronClassesTest#doAllTests --file pom.xml
+          command: mvn -B -q -fae test -Dtest=TronClassesTest#doAllTests --file tron-test/pom.xml
           timeout: 1
           max-score: 7
 
@@ -43,7 +46,7 @@ jobs:
         with:
           test-name: Test tron-controller module
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=TronControllerTest#doAllTests --file pom.xml -DfailIfNoTests=false
+          command: mvn -B -q -fae test -Dtest=TronControllerTest#doAllTests --file tron-test/pom.xml -DfailIfNoTests=false
           timeout: 1
           max-score: 2
 
@@ -53,7 +56,7 @@ jobs:
         with:
           test-name: Test tron-model module
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=TronModelTest#doAllTests --file pom.xml -DfailIfNoTests=false
+          command: mvn -B -q -fae test -Dtest=TronModelTest#doAllTests --file tron-test/pom.xml -DfailIfNoTests=false
           timeout: 1
           max-score: 2
 
@@ -63,7 +66,7 @@ jobs:
         with:
           test-name: Test tron-view module
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=TronViewTest#doAllTests --file pom.xml -DfailIfNoTests=false
+          command: mvn -B -q -fae test -Dtest=TronViewTest#doAllTests --file tron-test/pom.xml -DfailIfNoTests=false
           timeout: 1
           max-score: 2
 
@@ -73,7 +76,7 @@ jobs:
         with:
           test-name: Test tron-share module
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=TronShareTest#doAllTests --file pom.xml -DfailIfNoTests=false
+          command: mvn -B -q -fae test -Dtest=TronShareTest#doAllTests --file tron-test/pom.xml -DfailIfNoTests=false
           timeout: 1
           max-score: 2
 
@@ -83,7 +86,7 @@ jobs:
         with:
           test-name: Test tron-main module
           setup-command: ''
-          command: mvn -B -q -fae test -Dtest=TronMainTest#doAllTests --file pom.xml -DfailIfNoTests=false
+          command: mvn -B -q -fae test -Dtest=TronMainTest#doAllTests --file tron-test/pom.xml -DfailIfNoTests=false
           timeout: 1
           max-score: 5
 
